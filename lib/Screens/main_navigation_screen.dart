@@ -19,33 +19,35 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     const HousesScreen(),
   ];
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      body: _pages[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        selectedItemColor: Colors.red.shade900,
-        unselectedItemColor: Colors.grey.shade600,
-        backgroundColor: Colors.grey.shade100,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.people_alt),
+      body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 300),
+        child: _pages[_selectedIndex],
+      ),
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: _selectedIndex,
+        onDestinationSelected: (int index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+        destinations: [
+          NavigationDestination(
+            icon: const Icon(Icons.people_outline_rounded),
+            selectedIcon: Icon(Icons.people_alt_rounded, color: theme.colorScheme.primary),
             label: 'Characters',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
+          NavigationDestination(
+            icon: const Icon(Icons.favorite_outline_rounded),
+            selectedIcon: Icon(Icons.favorite_rounded, color: theme.colorScheme.primary),
             label: 'Favorites',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shield),
+          NavigationDestination(
+            icon: const Icon(Icons.shield_outlined),
+            selectedIcon: Icon(Icons.shield_rounded, color: theme.colorScheme.primary),
             label: 'Houses',
           ),
         ],

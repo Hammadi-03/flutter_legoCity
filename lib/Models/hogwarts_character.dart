@@ -6,6 +6,7 @@ class HogwartsCharacter {
   final Color houseColor;
   final Color textColor;
   final String imageUrl;
+  final String description;
 
   HogwartsCharacter({
     required this.name,
@@ -13,5 +14,6 @@ class HogwartsCharacter {
     required this.houseColor,
     required this.textColor,
     required this.imageUrl,
+    required this.description,
   });
 }
