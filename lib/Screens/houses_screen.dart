@@ -42,6 +42,7 @@ class HousesScreen extends StatelessWidget {
   void _showHouseDetails(BuildContext context, Map<String, dynamic> house) {
     showModalBottomSheet(
       context: context,
+      backgroundColor: Colors.white,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
       ),
@@ -78,7 +79,7 @@ class HousesScreen extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               Chip(
-                avatar: const Icon(Icons.ghost_app_outlined, size: 18),
+                avatar: const Icon(Icons.blur_on_rounded, size: 18),
                 label: Text('House Ghost: ${house['ghost']}'),
                 backgroundColor: (house['color'] as Color).withValues(alpha: 0.1),
               ),
@@ -93,8 +94,10 @@ class HousesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('Hogwarts Houses'),
+        backgroundColor: Colors.white,
       ),
       body: GridView.builder(
         padding: const EdgeInsets.all(16),
@@ -111,8 +114,12 @@ class HousesScreen extends StatelessWidget {
           final iconData = house['icon'] as IconData;
 
           return Card(
-            elevation: 4,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+            color: Colors.white,
+            elevation: 2,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24),
+              side: BorderSide(color: Colors.grey.shade200),
+            ),
             child: InkWell(
               borderRadius: BorderRadius.circular(24),
               onTap: () => _showHouseDetails(context, house),
@@ -121,8 +128,8 @@ class HousesScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(24),
                   gradient: LinearGradient(
                     colors: [
-                      houseColor.withValues(alpha: 0.15),
-                      houseColor.withValues(alpha: 0.03),
+                      houseColor.withValues(alpha: 0.1),
+                      Colors.white,
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,

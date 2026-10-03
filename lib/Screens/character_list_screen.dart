@@ -109,8 +109,10 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
     }).toList();
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('Hogwarts Characters'),
+        backgroundColor: Colors.white,
       ),
       body: Column(
         children: [
@@ -123,10 +125,18 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
                 hintText: 'Search characters or spells...',
                 prefixIcon: const Icon(Icons.search_rounded),
                 filled: true,
-                fillColor: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
+                fillColor: Colors.grey.shade100,
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30),
-                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.zero,
+                  borderSide: BorderSide(color: Colors.grey.shade300),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.zero,
+                  borderSide: BorderSide(color: Colors.grey.shade300),
+                ),
+                focusedBorder: const OutlineInputBorder(
+                  borderRadius: BorderRadius.zero,
+                  borderSide: BorderSide(color: Color(0xFF740001), width: 1.5),
                 ),
                 contentPadding: const EdgeInsets.symmetric(vertical: 0),
               ),
@@ -150,9 +160,10 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
                         _selectedHouse = house;
                       });
                     },
-                    selectedColor: Theme.of(context).colorScheme.primaryContainer,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                    backgroundColor: Colors.white,
+                    selectedColor: const Color(0xFF740001).withValues(alpha: 0.15),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.zero,
                     ),
                   ),
                 );
@@ -179,12 +190,15 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
                       final isFav = _favoriteNames.contains(character.name);
 
                       return Card(
+                        color: Colors.white,
+                        elevation: 1,
                         margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.zero,
+                          side: BorderSide(color: Colors.grey.shade200),
                         ),
                         child: InkWell(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.zero,
                           onTap: () {
                             Navigator.push(
                               context,
@@ -199,22 +213,10 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
                               children: [
                                 Hero(
                                   tag: character.name,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: character.houseColor.withValues(alpha: 0.3),
-                                          blurRadius: 10,
-                                          spreadRadius: 2,
-                                        )
-                                      ],
-                                    ),
-                                    child: CircleAvatar(
-                                      radius: 34,
-                                      backgroundColor: Colors.grey.shade200,
-                                      backgroundImage: _getImageProvider(character.imageUrl),
-                                    ),
+                                  child: CircleAvatar(
+                                    radius: 34,
+                                    backgroundColor: Colors.grey.shade200,
+                                    backgroundImage: _getImageProvider(character.imageUrl),
                                   ),
                                 ),
                                 const SizedBox(width: 16),
@@ -232,9 +234,9 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
                                       const SizedBox(height: 6),
                                       Container(
                                         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                                        decoration: BoxDecoration(
-                                          color: character.houseColor,
-                                          borderRadius: BorderRadius.circular(12),
+                                        decoration: const BoxDecoration(
+                                          color: Color(0xFF740001),
+                                          borderRadius: BorderRadius.zero,
                                         ),
                                         child: Text(
                                           character.ability,

@@ -17,51 +17,30 @@ class CharacterDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(character.name),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.share_rounded),
-            onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Sharing ${character.name}...')),
-              );
-            },
-          )
-        ],
+        backgroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             const SizedBox(height: 16),
 
-            // Hero Avatar with Glowing Shadow
+            // Section 1: Avatar
             Center(
               child: Hero(
                 tag: character.name,
-                child: Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: character.houseColor.withValues(alpha: 0.4),
-                        blurRadius: 24,
-                        spreadRadius: 4,
-                      )
-                    ],
-                  ),
-                  child: CircleAvatar(
-                    radius: 85,
-                    backgroundColor: Colors.grey.shade200,
-                    backgroundImage: _getImageProvider(character.imageUrl),
-                  ),
+                child: CircleAvatar(
+                  radius: 85,
+                  backgroundColor: Colors.grey.shade200,
+                  backgroundImage: _getImageProvider(character.imageUrl),
                 ),
               ),
             ),
 
             const SizedBox(height: 20),
 
-            // Character Title
             Text(
               character.name,
               style: GoogleFonts.cinzel(
@@ -73,19 +52,12 @@ class CharacterDetailScreen extends StatelessWidget {
 
             const SizedBox(height: 12),
 
-            // Unique Ability Badge
+            // Section 2: Ability Badge
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               decoration: BoxDecoration(
                 color: character.houseColor,
-                borderRadius: BorderRadius.circular(30),
-                boxShadow: [
-                  BoxShadow(
-                    color: character.houseColor.withValues(alpha: 0.3),
-                    blurRadius: 10,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
+                borderRadius: BorderRadius.zero,
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -106,15 +78,19 @@ class CharacterDetailScreen extends StatelessWidget {
 
             const SizedBox(height: 24),
 
-            // Description Card
+            // Section 3: Biography & Lore (Rectangular, no lines, no divider)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Card(
-                elevation: 4,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+                color: Colors.white,
+                elevation: 0,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.zero,
+                ),
                 child: Padding(
-                  padding: const EdgeInsets.all(24.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         children: [
@@ -129,7 +105,7 @@ class CharacterDetailScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const Divider(height: 24),
+                      const SizedBox(height: 12),
                       Text(
                         character.description,
                         textAlign: TextAlign.start,
@@ -147,7 +123,7 @@ class CharacterDetailScreen extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            // Cast Spell Interactive Button
+            // Section 4: Spell Button
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
               child: SizedBox(
@@ -157,10 +133,10 @@ class CharacterDetailScreen extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: character.houseColor,
                     foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(27),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.zero,
                     ),
-                    elevation: 4,
+                    elevation: 1,
                   ),
                   icon: const Icon(Icons.bolt_rounded),
                   label: Text(
@@ -173,7 +149,7 @@ class CharacterDetailScreen extends StatelessWidget {
                         content: Text('✨ Wand activated for ${character.name}!'),
                         backgroundColor: character.houseColor,
                         behavior: SnackBarBehavior.floating,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
                       ),
                     );
                   },

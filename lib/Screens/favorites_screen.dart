@@ -10,42 +10,36 @@ class FavoritesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('Saved Witches & Wizards'),
+        backgroundColor: Colors.white,
       ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
           child: Card(
-            elevation: 3,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+            color: Colors.white,
+            elevation: 2,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(28),
+              side: BorderSide(color: Colors.grey.shade200),
+            ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 40.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: const Color(0xFF740001).withValues(alpha: 0.25),
-                          blurRadius: 20,
-                          spreadRadius: 2,
-                        ),
-                      ],
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
-                      child: Image.network(
-                        favImageUrl,
-                        width: 100,
-                        height: 100,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Icon(Icons.favorite, size: 80, color: Colors.red.shade900);
-                        },
-                      ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: Image.network(
+                      favImageUrl,
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Icon(Icons.favorite, size: 80, color: Colors.red.shade900);
+                      },
                     ),
                   ),
                   const SizedBox(height: 24),
