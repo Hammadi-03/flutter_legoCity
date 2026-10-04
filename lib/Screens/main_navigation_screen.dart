@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'character_list_screen.dart';
 import 'favorites_screen.dart';
-import 'houses_screen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   const MainNavigationScreen({super.key});
@@ -16,7 +15,6 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   final List<Widget> _pages = [
     const CharacterListScreen(),
     const FavoritesScreen(),
-    const HousesScreen(),
   ];
 
   @override
@@ -44,11 +42,6 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
             icon: const Icon(Icons.favorite_outline_rounded),
             selectedIcon: Icon(Icons.favorite_rounded, color: theme.colorScheme.primary),
             label: 'Favorites',
-          ),
-          NavigationDestination(
-            icon: const Icon(Icons.shield_outlined),
-            selectedIcon: Icon(Icons.shield_rounded, color: theme.colorScheme.primary),
-            label: 'Houses',
           ),
         ],
       ),

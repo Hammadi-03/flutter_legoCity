@@ -86,8 +86,6 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
     ),
   ];
 
-  String _searchQuery = '';
-  String _selectedHouse = 'All';
   final Set<String> _favoriteNames = {};
 
   ImageProvider _getImageProvider(String path) {
@@ -99,14 +97,7 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final filtered = _allCharacters.where((c) {
-      final matchesSearch = c.name.toLowerCase().contains(_searchQuery.toLowerCase()) ||
-          c.ability.toLowerCase().contains(_searchQuery.toLowerCase());
-      final matchesHouse = _selectedHouse == 'All' ||
-          (_selectedHouse == 'Gryffindor' && c.houseColor == const Color(0xFF740001)) ||
-          (_selectedHouse == 'Slytherin' && c.houseColor == const Color(0xFF1A472A));
-      return matchesSearch && matchesHouse;
-    }).toList();
+    final filtered = _allCharacters;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -116,61 +107,6 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
       ),
       body: Column(
         children: [
-          // Search & Filter Header
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-            child: TextField(
-              onChanged: (val) => setState(() => _searchQuery = val),
-              decoration: InputDecoration(
-                hintText: 'Search characters or spells...',
-                prefixIcon: const Icon(Icons.search_rounded),
-                filled: true,
-                fillColor: Colors.grey.shade100,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.zero,
-                  borderSide: BorderSide(color: Colors.grey.shade300),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.zero,
-                  borderSide: BorderSide(color: Colors.grey.shade300),
-                ),
-                focusedBorder: const OutlineInputBorder(
-                  borderRadius: BorderRadius.zero,
-                  borderSide: BorderSide(color: Color(0xFF740001), width: 1.5),
-                ),
-                contentPadding: const EdgeInsets.symmetric(vertical: 0),
-              ),
-            ),
-          ),
-
-          // Filter Chips
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
-            child: Row(
-              children: ['All', 'Gryffindor', 'Slytherin'].map((house) {
-                final isSelected = _selectedHouse == house;
-                return Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: FilterChip(
-                    label: Text(house),
-                    selected: isSelected,
-                    onSelected: (selected) {
-                      setState(() {
-                        _selectedHouse = house;
-                      });
-                    },
-                    backgroundColor: Colors.white,
-                    selectedColor: const Color(0xFF740001).withValues(alpha: 0.15),
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.zero,
-                    ),
-                  ),
-                );
-              }).toList(),
-            ),
-          ),
-
           const SizedBox(height: 8),
 
           // Character List

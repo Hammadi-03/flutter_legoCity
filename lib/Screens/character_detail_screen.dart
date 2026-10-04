@@ -27,7 +27,9 @@ class CharacterDetailScreen extends StatelessWidget {
           children: [
             const SizedBox(height: 16),
 
-            // Section 1: Avatar
+            // Section 1
+
+
             Center(
               child: Hero(
                 tag: character.name,
@@ -52,33 +54,26 @@ class CharacterDetailScreen extends StatelessWidget {
 
             const SizedBox(height: 12),
 
-            // Section 2: Ability Badge
+            // Section 2
+
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               decoration: BoxDecoration(
                 color: character.houseColor,
                 borderRadius: BorderRadius.zero,
               ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(Icons.auto_awesome, color: Colors.white, size: 18),
-                  const SizedBox(width: 8),
-                  Text(
-                    character.ability,
-                    style: GoogleFonts.poppins(
-                      fontSize: 14,
-                      color: character.textColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
+              child: Text(
+                character.ability,
+                style: GoogleFonts.poppins(
+                  fontSize: 16,
+                  color: character.textColor,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
-
             const SizedBox(height: 24),
 
-            // Section 3: Biography & Lore (Rectangular, no lines, no divider)
+            // Section 3
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Card(
@@ -97,7 +92,7 @@ class CharacterDetailScreen extends StatelessWidget {
                           Icon(Icons.auto_stories_rounded, color: character.houseColor),
                           const SizedBox(width: 8),
                           Text(
-                            'Biography & Lore',
+                            "Biography | Tentang",
                             style: GoogleFonts.poppins(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -123,11 +118,11 @@ class CharacterDetailScreen extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            // Section 4: Spell Button
+            // Section 4
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
               child: SizedBox(
-                width: double.infinity,
+                width: 200,
                 height: 54,
                 child: ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
@@ -149,7 +144,11 @@ class CharacterDetailScreen extends StatelessWidget {
                         content: Text('✨ Wand activated for ${character.name}!'),
                         backgroundColor: character.houseColor,
                         behavior: SnackBarBehavior.floating,
-                        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(16),
+                          ),
+                        ),
                       ),
                     );
                   },
