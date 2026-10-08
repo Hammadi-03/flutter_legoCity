@@ -25,26 +25,6 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         duration: const Duration(milliseconds: 300),
         child: _pages[_selectedIndex],
       ),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _selectedIndex,
-        onDestinationSelected: (int index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-        destinations: [
-          NavigationDestination(
-            icon: const Icon(Icons.people_outline_rounded),
-            selectedIcon: Icon(Icons.people_alt_rounded, color: theme.colorScheme.primary),
-            label: 'Characters',
-          ),
-          NavigationDestination(
-            icon: const Icon(Icons.favorite_outline_rounded),
-            selectedIcon: Icon(Icons.favorite_rounded, color: theme.colorScheme.primary),
-            label: 'Favorites',
-          ),
-        ],
-      ),
     );
   }
 }
